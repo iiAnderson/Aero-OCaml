@@ -15,33 +15,22 @@ Semicolons ‘;;’ are used to separate the main statements in the body of a pr
 The base types, called literals, are Bool, Integer and List. Every <expr> will evaluate a literal.
 
 Example Code:
-  | Project (e, i) ->
-  
-      (match eval env e with
-      
-	      List vs ->
-	      
-        (match eval env i with
-	
-            | Val v1 -> 
-	    
-               (try eval env (List.nth vs v1) with (Failure "nth") -> 
-	       
-                runtimeerr ("The index given is out of bounds, given " ^ exprString (eval env i) ^ " but the list is of size " ^ string_of_int (List.length vs)))
-		
-            | _ -> runtimeerr ("A int was expected, received " ^ exprString (eval env i)))
-	    
+  | Project (e, i) ->  
+      (match eval env e with      
+	      List vs ->	      
+        (match eval env i with	
+            | Val v1 -> 	    
+               (try eval env (List.nth vs v1) with (Failure "nth") -> 	       
+                runtimeerr ("The index given is out of bounds, given " ^ exprString (eval env i) ^ " but the list is of size " ^ string_of_int (List.length vs)))		
+            | _ -> runtimeerr ("A int was expected, received " ^ exprString (eval env i)))	    
 	 | _ -> runtimeerr ("A list was expected, received " ^ exprString (eval env e)))
 	 
    
 Example of for loop code:
 
 for foo (length l1) do
-
 if foo =0
-
-	then {print (l1.foo; printnl 0;}
-	
+	then {print (l1.foo; printnl 0;}	
 	else {print (l1.foo); printnl (l1.(foo-1));};;
 	
 Example Cons code:
@@ -63,9 +52,7 @@ hd [0, 1, 2] = 0;;
 Example Match code:
 
 match [0, 1, 2] with 
-
-	[] : 0
-	
+	[] : 0	
         || h, t : h+2;;
 	
 Example If code: 
